@@ -12,6 +12,7 @@ async function HandleNewUrl(req, res) {
     originalUrl: originalUrl,
     shortUrl: shortId,
     vistHistory: [],
+    createdBy: req.user._id,
   });
 
   if (!shortUrl) {

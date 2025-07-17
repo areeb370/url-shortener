@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
+const { RestrictToLoggedIn, AddUser } = require("./middlewares/auth");
 const connectDB = require("./connect");
 const PORT = 3001;
 
@@ -16,12 +18,13 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
-app.use("/url", urlRouter);
-app.use("/home", staticRouter);
+app.use("/url", RestrictToLoggedIn, urlRouter);
+app.use("/home", AddUser, staticRouter);
 app.use("/user", userRouter);
 
 app.listen(PORT, () => {
