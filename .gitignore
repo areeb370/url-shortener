@@ -1,5 +1,5 @@
 # Ignore environment variables
-.env.local
+.env
 
 # Node modules
 node_modules/

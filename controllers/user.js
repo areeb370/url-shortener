@@ -9,6 +9,6 @@ async function HandleNewUser(req, res) {
   return res.render("home");
 }
 
-exports = {
+module.exports = {
   HandleNewUser,
 };
